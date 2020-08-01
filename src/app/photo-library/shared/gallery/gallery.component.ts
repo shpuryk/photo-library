@@ -13,6 +13,7 @@ export class GalleryComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    
   }
 
 }

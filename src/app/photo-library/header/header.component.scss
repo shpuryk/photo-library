@@ -1,11 +1,15 @@
-nav {
-    display: flex;
-    flex-direction: row;
-
-    a {
-        padding: 10px;
-        &.active {
-            color: red;
+:host {
+    // display: flex;
+    // height: 5vh;
+    nav {
+        display: flex;
+        flex-direction: row;
+    
+        a {
+            padding: 10px;
+            &.active {
+                color: red;
+            }
         }
     }
 }

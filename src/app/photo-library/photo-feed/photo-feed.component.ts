@@ -16,7 +16,6 @@ export class PhotoFeedComponent implements OnInit {
   ngOnInit(): void {
     this.api.fetchPhotos(20, 0).pipe(take(1)).subscribe(data => {
       this.photos = data;
-      console.log(data);
     });
   }
 

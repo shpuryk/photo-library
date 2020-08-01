@@ -1,6 +1,10 @@
-<app-photo-card
-  *ngFor="let p of photos"
-  [imageUrl]="p"
-  (onClick)="photoClick.emit($event)"
->
-</app-photo-card>
+
+<cdk-virtual-scroll-viewport [itemSize]="440" class="viewport">
+  <app-photo-card
+    *cdkVirtualFor="let p of photos"
+    [imageUrl]="p"
+    (onClick)="photoClick.emit($event)"
+  >
+  </app-photo-card>
+</cdk-virtual-scroll-viewport>
+

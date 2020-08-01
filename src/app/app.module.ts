@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PhotoLibraryModule } from './photo-library/photo-library.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -12,7 +13,8 @@ import { PhotoLibraryModule } from './photo-library/photo-library.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    PhotoLibraryModule
+    PhotoLibraryModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -8,7 +8,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class PhotoCardComponent implements OnInit {
 
   @Input() imageUrl: string;
-  @Output() onClick: EventEmitter<sting> = new EventEmitter();
+  @Output() onClick: EventEmitter<string> = new EventEmitter();
 
   constructor() { }
 

@@ -6,6 +6,7 @@ import { HeaderComponent } from './header/header.component';
 import { RouterModule } from '@angular/router';
 import { GalleryComponent } from './shared/gallery/gallery.component';
 import { PhotoCardComponent } from './shared/photo-card/photo-card.component';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,6 @@ import { PhotoCardComponent } from './shared/photo-card/photo-card.component';
     PhotoCardComponent,
   ],
   exports: [PhotoFeedComponent, FavoritesComponent, HeaderComponent],
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, ScrollingModule],
 })
 export class PhotoLibraryModule {}
