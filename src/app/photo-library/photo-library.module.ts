@@ -4,13 +4,18 @@ import { PhotoFeedComponent } from './photo-feed/photo-feed.component';
 import { FavoritesComponent } from './favorites/favorites.component';
 import { HeaderComponent } from './header/header.component';
 import { RouterModule } from '@angular/router';
+import { GalleryComponent } from './shared/gallery/gallery.component';
+import { PhotoCardComponent } from './shared/photo-card/photo-card.component';
 
 @NgModule({
-  declarations: [PhotoFeedComponent, FavoritesComponent, HeaderComponent],
+  declarations: [
+    PhotoFeedComponent,
+    FavoritesComponent,
+    HeaderComponent,
+    GalleryComponent,
+    PhotoCardComponent,
+  ],
   exports: [PhotoFeedComponent, FavoritesComponent, HeaderComponent],
-  imports: [
-    CommonModule,
-    RouterModule
-  ]
+  imports: [CommonModule, RouterModule],
 })
-export class PhotoLibraryModule { }
+export class PhotoLibraryModule {}

@@ -1,0 +1,6 @@
+<app-photo-card
+  *ngFor="let p of photos"
+  [imageUrl]="p"
+  (onClick)="photoClick.emit($event)"
+>
+</app-photo-card>

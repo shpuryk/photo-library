@@ -1,1 +1,5 @@
-<p>photo-feed works!</p>
+<app-gallery 
+  [photos]="photos"
+  (photoClick)="addToFavorites($event)">
+
+</app-gallery>

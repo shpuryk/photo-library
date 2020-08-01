@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../../core/api.service';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-photo-feed',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PhotoFeedComponent implements OnInit {
 
-  constructor() { }
+  photos: string[];
+
+  constructor(private api: ApiService) { }
 
   ngOnInit(): void {
+    this.api.fetchPhotos(20, 0).pipe(take(1)).subscribe(data => {
+      this.photos = data;
+      console.log(data);
+    });
+  }
+
+  addToFavorites(e): void {
+    console.log('addToFavorites  ', e);
   }
 
 }
