@@ -1,7 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { PhotoFeedComponent } from './photo-library/photo-feed/photo-feed.component';
+import { FavoritesComponent } from './photo-library/favorites/favorites.component';
 
-const routes: Routes = [];
+export const routes: Routes = [
+  { path: '', component: PhotoFeedComponent },
+  { path: 'favorites', component: FavoritesComponent },
+];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -1,0 +1,11 @@
+nav {
+    display: flex;
+    flex-direction: row;
+
+    a {
+        padding: 10px;
+        &.active {
+            color: red;
+        }
+    }
+}
