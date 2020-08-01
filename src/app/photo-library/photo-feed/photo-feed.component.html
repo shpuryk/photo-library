@@ -1,5 +1,6 @@
-<app-gallery 
-  [photos]="photos"
-  (photoClick)="addToFavorites($event)">
-
+<app-gallery
+  [photos]="photoBatch"
+  (fetch)="getBatch($event)"
+  (photoClick)="addToFavorites($event)"
+>
 </app-gallery>

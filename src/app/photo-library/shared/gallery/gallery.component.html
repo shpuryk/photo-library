@@ -1,10 +1,20 @@
-
-<cdk-virtual-scroll-viewport [itemSize]="440" class="viewport">
-  <app-photo-card
-    *cdkVirtualFor="let p of photos"
-    [imageUrl]="p"
-    (onClick)="photoClick.emit($event)"
+<cdk-virtual-scroll-viewport
+  [itemSize]="imageHeight"
+  class="viewport"
+  (scrolledIndexChange)="scrollHandler()"
+>
+  <div
+    *cdkVirtualFor="let chunk of photoList"
+    class="gallery-row"
+    [style.height]="imageHeight + 'px'"
   >
-  </app-photo-card>
+    <app-photo-card
+      *ngFor="let p of chunk"
+      [imageUrl]="p"
+      (onClick)="photoClick.emit($event)"
+    >
+    </app-photo-card>
+  </div>
+  <mat-spinner *ngIf="loading"></mat-spinner>
+  <div class="no-photos" *ngIf="theEnd">No photos anymore</div>
 </cdk-virtual-scroll-viewport>
-
