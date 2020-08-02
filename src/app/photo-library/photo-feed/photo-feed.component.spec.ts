@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 
 import { PhotoFeedComponent } from './photo-feed.component';
-import { ApiService } from 'src/app/core/api.service';
+import { PhotoLibraryService } from 'src/app/core/photo-library.service';
 import { of } from 'rxjs';
 import { GalleryComponent } from '../shared/gallery/gallery.component';
 import { IMAGES_TO_LOAD } from '../shared/gallery/gallery.const';
@@ -9,17 +9,17 @@ import { IMAGES_TO_LOAD } from '../shared/gallery/gallery.const';
 describe('PhotoFeedComponent', () => {
   let component: PhotoFeedComponent;
   let fixture: ComponentFixture<PhotoFeedComponent>;
-  let apiServiceSpy: jasmine.SpyObj<ApiService>;
+  let photoLibraryServiceSpy: jasmine.SpyObj<PhotoLibraryService>;
   beforeEach(async(() => {
 
-    apiServiceSpy = jasmine.createSpyObj('apiServiceSpy', [
+    photoLibraryServiceSpy = jasmine.createSpyObj('photoLibraryServiceSpy', [
       'fetchPhotos'
     ]);
-    apiServiceSpy.fetchPhotos.and.returnValue(of([]));
+    photoLibraryServiceSpy.fetchPhotos.and.returnValue(of([]));
 
     TestBed.configureTestingModule({
       declarations: [ PhotoFeedComponent, GalleryComponent ],
-      providers: [{ provide: ApiService, useValue: apiServiceSpy }]
+      providers: [{ provide: PhotoLibraryService, useValue: photoLibraryServiceSpy }]
     })
     .compileComponents();
   }));
@@ -32,7 +32,7 @@ describe('PhotoFeedComponent', () => {
 
   it('should call fetchPhotos', fakeAsync(() => {
     component.getBatch(10);
-    expect(apiServiceSpy.fetchPhotos).toHaveBeenCalledWith(IMAGES_TO_LOAD, 10);
+    expect(photoLibraryServiceSpy.fetchPhotos).toHaveBeenCalledWith(IMAGES_TO_LOAD, 10);
   }));
 
 

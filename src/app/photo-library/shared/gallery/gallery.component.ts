@@ -6,20 +6,23 @@ import {
   OnChanges,
   ViewChild,
   SimpleChanges,
+  HostListener,
+  OnInit,
 } from '@angular/core';
 import { splitArrayIntoChunks } from '../utils/utils';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { GALLERY_COLUMNS, IMAGE_HEIGHT } from './gallery.const';
+import { FavoritePhoto } from 'src/app/core/photo-library.service';
 
 @Component({
   selector: 'app-gallery',
   templateUrl: './gallery.component.html',
   styleUrls: ['./gallery.component.scss'],
 })
-export class GalleryComponent implements OnChanges {
-  @Input() photos: string[];
+export class GalleryComponent implements OnInit, OnChanges {
+  @Input() photos: string[] | FavoritePhoto[];
   @Input() noFetch: boolean;
-  @Output() photoClick: EventEmitter<string> = new EventEmitter();
+  @Output() photoClick: EventEmitter<string | FavoritePhoto[]> = new EventEmitter();
   @Output() fetch: EventEmitter<number> = new EventEmitter();
 
   @ViewChild(CdkVirtualScrollViewport)
@@ -34,13 +37,26 @@ export class GalleryComponent implements OnChanges {
   loading = false;
   theEnd = false;
 
-  imageHeight = IMAGE_HEIGHT + 40;
+  imageHeight: number;
+
+  @HostListener('window:resize', ['$event'])
+  onResize(): void {
+    this.setImageHeight();
+  }
+
+  ngOnInit(): void {
+    this.setImageHeight();
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (typeof changes.photos.currentValue === 'undefined') {
       return;
     }
-    if (changes.photos.previousValue !== changes.photos.currentValue) {
+    if (!changes.photos.previousValue ||
+      !changes.photos.previousValue.some((e) =>
+        changes.photos.currentValue.includes(e)
+      )
+    ) {
       this.photoList = [
         ...this.photoList,
         ...splitArrayIntoChunks(changes.photos.currentValue, GALLERY_COLUMNS),
@@ -49,6 +65,11 @@ export class GalleryComponent implements OnChanges {
     }
     if (changes.photos.currentValue.length === 0) {
       this.theEnd = true;
+    }
+    if (!this.noFetch &&
+      this.photoList.length * this.imageHeight < this.viewport.getViewportSize()
+    ) {
+      setTimeout(() => this.scrollHandler());
     }
   }
 
@@ -62,5 +83,12 @@ export class GalleryComponent implements OnChanges {
       this.loading = true;
       this.fetch.emit(end * GALLERY_COLUMNS);
     }
+  }
+
+  setImageHeight(): void {
+    this.imageHeight =
+      window.innerWidth < ((IMAGE_HEIGHT + 40) * GALLERY_COLUMNS)
+        ? window.innerWidth / GALLERY_COLUMNS
+        : IMAGE_HEIGHT + 40;
   }
 }

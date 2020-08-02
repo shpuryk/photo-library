@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { FavoritePhoto } from 'src/app/core/photo-library.service';
 
 @Component({
   selector: 'app-photo-card',
@@ -7,12 +8,15 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class PhotoCardComponent implements OnInit {
 
-  @Input() imageUrl: string;
+  @Input() image: string | FavoritePhoto;
   @Output() onClick: EventEmitter<string> = new EventEmitter();
+
+  imageUrl: string;
 
   constructor() { }
 
   ngOnInit(): void {
+    this.imageUrl = typeof this.image === 'object' ? this.image.url : this.image;
   }
 
 }

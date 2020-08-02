@@ -10,7 +10,8 @@
     .gallery-row {
         display: flex;
         flex-direction: row;
-        justify-content: center;
+        margin: auto;
+        max-width: 1320px;
     }
 
     mat-spinner {

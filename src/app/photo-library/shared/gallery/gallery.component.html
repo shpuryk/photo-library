@@ -10,8 +10,9 @@
   >
     <app-photo-card
       *ngFor="let p of chunk"
-      [imageUrl]="p"
+      [image]="p"
       (onClick)="photoClick.emit($event)"
+      [style.max-width]="imageHeight + 'px'"
     >
     </app-photo-card>
   </div>

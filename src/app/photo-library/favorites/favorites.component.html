@@ -1,1 +1,6 @@
-<p>favorites works!</p>
+<app-gallery
+  [photos]="photos"
+  [noFetch]="true"
+  (photoClick)="openDetails($event)"
+>
+</app-gallery>

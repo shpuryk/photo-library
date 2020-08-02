@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ApiService } from '../../core/api.service';
+import { PhotoLibraryService } from '../../core/photo-library.service';
 import { take } from 'rxjs/operators';
 import { IMAGES_TO_LOAD } from '../shared/gallery/gallery.const';
 
@@ -12,14 +12,18 @@ export class PhotoFeedComponent {
 
   photoBatch: string[];
 
-  constructor(private api: ApiService) { }
+  constructor(private photoLibrary: PhotoLibraryService) { }
 
-  addToFavorites(e): void {
-    console.log('addToFavorites  ', e);
+  addToFavorites(imgUrl: string): void {
+    this.photoLibrary.addToFavorites(imgUrl).subscribe(() => {
+      console.log('added to favorites');
+    }, () => {
+      console.log('already added to favorites');
+    });
   }
 
   getBatch(offset: number): void {
-    this.api.fetchPhotos(IMAGES_TO_LOAD, offset).pipe(take(1))
+    this.photoLibrary.fetchPhotos(IMAGES_TO_LOAD, offset).pipe(take(1))
     .subscribe(data => {
         this.photoBatch = data;
       });
