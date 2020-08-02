@@ -9,7 +9,7 @@ import { FavoritePhoto } from 'src/app/core/photo-library.service';
 export class PhotoCardComponent implements OnInit {
 
   @Input() image: string | FavoritePhoto;
-  @Output() onClick: EventEmitter<string> = new EventEmitter();
+  @Output() onClick: EventEmitter<string | FavoritePhoto> = new EventEmitter();
 
   imageUrl: string;
 

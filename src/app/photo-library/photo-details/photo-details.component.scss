@@ -1,0 +1,29 @@
+$warn-color: #ff2b2b;
+
+:host {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .photo {
+        width: 100%;
+        max-width: min-content;
+        margin: 20px 0px;
+    }
+    
+    .btn-warn {
+        background: $warn-color;
+        color: white;
+        border: none;
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+    .error {
+        color: $warn-color;
+        text-align: center;
+        font-size: 1.5em;
+        margin: 20px;
+    }
+}
+
+

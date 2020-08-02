@@ -8,6 +8,7 @@ import { GalleryComponent } from './shared/gallery/gallery.component';
 import { PhotoCardComponent } from './shared/photo-card/photo-card.component';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { PhotoDetailsComponent } from './photo-details/photo-details.component';
 
 @NgModule({
   declarations: [
@@ -16,8 +17,19 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     HeaderComponent,
     GalleryComponent,
     PhotoCardComponent,
+    PhotoDetailsComponent,
   ],
-  exports: [PhotoFeedComponent, FavoritesComponent, HeaderComponent],
-  imports: [CommonModule, RouterModule, ScrollingModule, MatProgressSpinnerModule],
+  exports: [
+    PhotoFeedComponent,
+    FavoritesComponent,
+    HeaderComponent,
+    PhotoDetailsComponent,
+  ],
+  imports: [
+    CommonModule,
+    RouterModule,
+    ScrollingModule,
+    MatProgressSpinnerModule,
+  ],
 })
 export class PhotoLibraryModule {}

@@ -1,0 +1,5 @@
+<div class="error" *ngIf="errorText">{{errorText}}</div>
+
+<img class="photo" [src]="photo?.url" alt="">
+
+<button class="btn-warn" *ngIf="photo" (click)="removeFromFavorites()">Remove from favorites</button>

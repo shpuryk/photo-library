@@ -47,7 +47,7 @@ export class PhotoLibraryService {
   addToFavorites(imageUrl: string): Observable<void> {
     return new Observable<void>((observer) => {
       const favorites = this.getFavorites();
-      if (favorites.some(f => f.url === imageUrl)) {
+      if (favorites.some((f) => f.url === imageUrl)) {
         return observer.error();
       }
       this.setFavorites([
@@ -68,6 +68,17 @@ export class PhotoLibraryService {
     });
   }
 
+  getFromFavorites(id: number): Observable<FavoritePhoto> {
+    const item = this.getFavorites().find((f) => f.id === id);
+    return new Observable<FavoritePhoto>((observer) => {
+      if (item) {
+        return observer.next(item);
+      } else {
+        return observer.error('Photo does not exist');
+      }
+    });
+  }
+
   private getFavorites(): FavoritePhoto[] {
     return this.localStorage.get(FAVORITES_KEY);
   }
@@ -75,5 +86,4 @@ export class PhotoLibraryService {
   private setFavorites(items: FavoritePhoto[]): void {
     return this.localStorage.set(FAVORITES_KEY, items);
   }
-
 }
