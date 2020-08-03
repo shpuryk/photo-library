@@ -1,5 +1,5 @@
 <div class="error" *ngIf="errorText">{{errorText}}</div>
 
-<img class="photo" [src]="photo?.url" alt="">
+<div *ngIf="photo" class="photo" [style.background-image]="'url(' + photo?.url + ')'"> </div>
 
 <button class="btn-warn" *ngIf="photo" (click)="removeFromFavorites()">Remove from favorites</button>

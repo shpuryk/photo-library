@@ -14,8 +14,11 @@
         max-width: 1320px;
     }
 
+    .spinner-wrp {
+        padding: 20px;
+    }
     mat-spinner {
-        margin: auto
+        margin: auto;
     }
 
     .no-photos {

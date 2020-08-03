@@ -25,6 +25,8 @@ export class PhotoDetailsComponent implements OnInit {
       .getFromFavorites(+this.activeRouter.snapshot.params['id'])
       .pipe(take(1))
       .subscribe((data) => {
+        // get bigger image
+        data.url = data.url.replace('640', '1600').replace('480', '1200');
         this.photo = data;
       }, (error) => {
         this.errorText = error;

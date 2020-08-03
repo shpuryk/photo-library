@@ -4,11 +4,17 @@ $warn-color: #ff2b2b;
     display: flex;
     flex-direction: column;
     align-items: center;
+    flex: 1;
 
     .photo {
+        display: flex;
+        flex: 1;
         width: 100%;
-        max-width: min-content;
-        margin: 20px 0px;
+        height: 100%;
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+        margin: 20px;
     }
     
     .btn-warn {

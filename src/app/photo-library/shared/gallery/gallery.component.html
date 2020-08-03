@@ -16,6 +16,8 @@
     >
     </app-photo-card>
   </div>
-  <mat-spinner *ngIf="loading"></mat-spinner>
+  <div class="spinner-wrp" *ngIf="loading">
+    <mat-spinner ></mat-spinner>
+  </div>
   <div class="no-photos" *ngIf="theEnd">No photos anymore</div>
 </cdk-virtual-scroll-viewport>
